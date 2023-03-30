@@ -1726,6 +1726,8 @@ spec:
                           type: string
                         type:
                           type: string
+                        uuid:
+                          type: string
                       type: object
                   type: object
                 nullable: true
