@@ -1707,6 +1707,8 @@ spec:
                       type: object
                     status:
                       properties:
+                        deletionFailedAt:
+                          type: string
                         endpoint:
                           type: string
                         errorMsg:

@@ -1814,6 +1814,8 @@ spec:
                       type: object
                     status:
                       properties:
+                        deletionFailedAt:
+                          type: string
                         endpoint:
                           type: string
                         errorMsg:
@@ -1832,6 +1834,8 @@ spec:
                         state:
                           type: string
                         type:
+                          type: string
+                        uuid:
                           type: string
                       type: object
                   type: object
@@ -2272,7 +2276,7 @@ spec:
       jsonPath: .spec.groups
       name: Groups
       type: string
-    - description: Should be one of "snapshot", "snapshot-force-create", "snapshot-cleanup", "snapshot-delete", "backup" or "backup-force-create".
+    - description: Should be one of "snapshot", "snapshot-force-create", "snapshot-cleanup", "snapshot-delete", "backup" or "backup-force-create"
       jsonPath: .spec.task
       name: Task
       type: string
