@@ -1979,6 +1979,11 @@ spec:
                       items:
                         type: string
                       type: array
+                    type:
+                      enum:
+                      - filesystem
+                      - block
+                      type: string
                   type: object
                 type: object
               engineManagerCPURequest:
@@ -2272,7 +2277,7 @@ spec:
       jsonPath: .spec.groups
       name: Groups
       type: string
-    - description: Should be one of "snapshot", "snapshot-force-create", "snapshot-cleanup", "snapshot-delete", "backup" or "backup-force-create".
+    - description: Should be one of "snapshot", "snapshot-force-create", "snapshot-cleanup", "snapshot-delete", "backup" or "backup-force-create"
       jsonPath: .spec.task
       name: Task
       type: string
