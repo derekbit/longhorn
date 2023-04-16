@@ -1439,6 +1439,11 @@ spec:
             properties:
               active:
                 type: boolean
+              backendStoreDriver:
+                enum:
+                - longhorn
+                - spdk-aio
+                type: string
               backupVolume:
                 type: string
               desireState:
@@ -2480,6 +2485,11 @@ spec:
             properties:
               active:
                 type: boolean
+              backendStoreDriver:
+                enum:
+                - longhorn
+                - spdk-aio
+                type: string
               backingImage:
                 type: string
               baseImage:
@@ -3395,6 +3405,11 @@ spec:
                 enum:
                 - rwo
                 - rwx
+                type: string
+              backendStoreDriver:
+                enum:
+                - longhorn
+                - spdk-aio
                 type: string
               backingImage:
                 type: string
