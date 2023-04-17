@@ -1709,6 +1709,8 @@ spec:
                       properties:
                         name:
                           type: string
+                        backendStoreDriver:
+                          type: string
                       type: object
                     status:
                       properties:
