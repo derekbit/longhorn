@@ -1336,6 +1336,11 @@ spec:
             properties:
               active:
                 type: boolean
+              backendStoreDriver:
+                enum:
+                - longhorn
+                - spdk
+                type: string
               backupVolume:
                 type: string
               desireState:
@@ -1703,6 +1708,8 @@ spec:
                   properties:
                     spec:
                       properties:
+                        backendStoreDriver:
+                          type: string
                         name:
                           type: string
                       type: object
@@ -1736,6 +1743,8 @@ spec:
                   properties:
                     spec:
                       properties:
+                        backendStoreDriver:
+                          type: string
                         name:
                           type: string
                       type: object
@@ -1770,6 +1779,8 @@ spec:
                     spec:
                       properties:
                         name:
+                          type: string
+                        backendStoreDriver:
                           type: string
                       type: object
                     status:
@@ -2433,6 +2444,11 @@ spec:
             properties:
               active:
                 type: boolean
+              backendStoreDriver:
+                enum:
+                - longhorn
+                - spdk
+                type: string
               backingImage:
                 type: string
               baseImage:
@@ -3324,6 +3340,11 @@ spec:
                 enum:
                 - rwo
                 - rwx
+                type: string
+              backendStoreDriver:
+                enum:
+                - longhorn
+                - spdk
                 type: string
               backingImage:
                 type: string
