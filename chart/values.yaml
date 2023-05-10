@@ -27,14 +27,14 @@ image:
       repository: longhornio/longhorn-engine
       tag: master-head
     manager:
-      repository: longhornio/longhorn-manager
-      tag: master-head
+      repository: derekbit/longhorn-manager
+      tag: block01
     ui:
       repository: longhornio/longhorn-ui
       tag: master-head
     instanceManager:
-      repository: longhornio/longhorn-instance-manager
-      tag: master-head
+      repository: derekbit/longhorn-instance-manager
+      tag: block01
     shareManager:
       repository: longhornio/longhorn-share-manager
       tag: master-head
