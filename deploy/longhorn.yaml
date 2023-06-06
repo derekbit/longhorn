@@ -3555,6 +3555,8 @@ spec:
                 type: string
               staleReplicaTimeout:
                 type: integer
+              offlineReplicaRebuilding:
+                type: boolean
               unmapMarkSnapChainRemoved:
                 enum:
                 - ignored
@@ -3651,6 +3653,8 @@ spec:
                 type: string
               lastDegradedAt:
                 type: string
+              offlineReplicaRebuildingRequired:
+                type: boolean
               ownerID:
                 type: string
               pendingNodeID:
