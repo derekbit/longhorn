@@ -38,19 +38,19 @@ image:
       tag: master-head
     manager:
       # -- Specify Longhorn manager image repository
-      repository: longhornio/longhorn-manager
+      repository: derekbit/longhorn-manager
       # -- Specify Longhorn manager image tag
-      tag: master-head
+      tag: v2-backup
     ui:
       # -- Specify Longhorn ui image repository
-      repository: longhornio/longhorn-ui
+      repository: derekbit/longhorn-ui
       # -- Specify Longhorn ui image tag
-      tag: master-head
+      tag: fefe45b
     instanceManager:
       # -- Specify Longhorn instance manager image repository
-      repository: longhornio/longhorn-instance-manager
+      repository: derekbit/longhorn-instance-manager
       # -- Specify Longhorn instance manager image tag
-      tag: master-head
+      tag: v2-backup
     shareManager:
       # -- Specify Longhorn share manager image repository
       repository: longhornio/longhorn-share-manager
