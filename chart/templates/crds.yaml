@@ -3263,7 +3263,7 @@ spec:
               upgradingNode:
                 description: The node ID where the upgrade is running.
                 type: string
-             upgradingVolumes:
+              upgradingVolumes:
                 additionalProperties:
                   properties:
                     nodeID:
