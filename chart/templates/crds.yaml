@@ -3640,6 +3640,8 @@ spec:
                 type: string
               state:
                 type: string
+              suspended:
+                type: boolean
             type: object
         type: object
     served: true
