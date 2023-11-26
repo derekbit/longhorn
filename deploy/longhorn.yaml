@@ -1667,6 +1667,9 @@ spec:
                 type: boolean
               storageIP:
                 type: string
+              suspended:
+                nullable: true
+                type: boolean
               unmapMarkSnapChainRemovedEnabled:
                 type: boolean
             type: object
@@ -2651,6 +2654,9 @@ spec:
                 type: boolean
               storageIP:
                 type: string
+              suspended:
+                nullable: true
+                type: boolean
             type: object
         type: object
     served: true
@@ -3686,6 +3692,8 @@ spec:
                 type: string
               staleReplicaTimeout:
                 type: integer
+              suspendRequested:
+                type: boolean
               unmapMarkSnapChainRemoved:
                 enum:
                 - ignored
