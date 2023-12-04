@@ -3255,7 +3255,7 @@ spec:
               backendStoreDriver:
                 description: The backend store driver of the upgrade
                 type: string
-              upgradeNode:
+              upgradedNode:
                 description: The node ID to upgrade
                 type: string
             type: object
