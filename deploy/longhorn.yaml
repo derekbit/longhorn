@@ -3370,9 +3370,6 @@ metadata:
     controller-gen.kubebuilder.io/version: v0.7.0
   creationTimestamp: null
   labels:
-    app.kubernetes.io/name: longhorn
-    app.kubernetes.io/instance: longhorn
-    app.kubernetes.io/version: v1.6.0-dev
     longhorn-manager: ""
   name: upgrades.longhorn.io
 spec:
@@ -3414,23 +3411,19 @@ spec:
               backendStoreDriver:
                 description: The backend store driver of the upgrade
                 type: string
+              upgradeNode:
+                description: The node ID to upgrade
+                type: string
             type: object
           status:
             description: UpgradeStatus defines the observed state of the Longhorn upgrade data
             properties:
-              nodeUpgradeState:
-                description: The state of the upgrade on the node.
-                type: string
               ownerID:
                 description: The node ID on which the controller is responsible to reconcile this backup target CR.
                 type: string
               state:
-                description: The state of the upgrade
                 type: string
-              upgradingNode:
-                description: The node ID where the upgrade is running.
-                type: string
-              upgradingVolumes:
+              volumes:
                 additionalProperties:
                   properties:
                     nodeID:
@@ -3438,7 +3431,6 @@ spec:
                   required:
                   - nodeID
                   type: object
-                description: The volumes that are upgrading.
                 type: object
             type: object
         type: object
