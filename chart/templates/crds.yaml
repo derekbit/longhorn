@@ -2219,6 +2219,8 @@ spec:
                       type: string
                     diskPath:
                       type: string
+                    instanceManagerName:
+                      type: string
                     scheduledReplica:
                       additionalProperties:
                         format: int64
