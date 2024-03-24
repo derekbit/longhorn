@@ -3462,13 +3462,17 @@ spec:
   scope: Namespaced
   versions:
   - additionalPrinterColumns:
-    - description: The type of the upgrade
-      jsonPath: .spec.upgradeType
-      name: Type
-      type: string
-    - description: The node that the upgrade is on
-      jsonPath: .spec.nodeID
+    - description: The node that the upgrade is being performed on
+      jsonPath: .status.ownerID
       name: Node
+      type: string
+    - description: The data engine targeted for upgrade
+      jsonPath: .spec.dataEngine
+      name: Data Engine
+      type: string
+    - description: The current state of the upgrade process
+      jsonPath: .status.state
+      name: State
       type: string
     name: v1beta2
     schema:
