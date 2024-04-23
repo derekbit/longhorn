@@ -1834,6 +1834,8 @@ spec:
             properties:
               dataEngine:
                 type: string
+              desireState:
+                type: string
               image:
                 type: string
               nodeID:
