@@ -42,9 +42,9 @@ image:
       tag: master-head
     manager:
       # -- Repository for the Longhorn Manager image.
-      repository: longhornio/longhorn-manager
+      repository: derekbit/longhorn-manager
       # -- Tag for the Longhorn Manager image.
-      tag: master-head
+      tag: v2-upgrade-control-plane
     ui:
       # -- Repository for the Longhorn UI image.
       repository: longhornio/longhorn-ui
