@@ -24,7 +24,7 @@ jobs:
 
     strategy:
       matrix:
-        branch_tag: ['master:master-head-20240818']
+        branch_tag: ['master']
 
     steps:
     - name: Setup Git
@@ -51,7 +51,7 @@ jobs:
       run: |
         IFS=':' read -ra tokens <<< "${{ matrix.branch_tag }}"
         branch="${tokens[0]}"
-        tag="${tokens[0]}-sprint-$(date '+%Y%m%d')"
+        tag="${tokens[0]}-head-sprint-$(date '+%Y%m%d')"
 
         echo "branch=${branch}" >> $GITHUB_OUTPUT
         echo "tag=${tag}" >> $GITHUB_OUTPUT
@@ -61,10 +61,10 @@ jobs:
         tag=${tag}
         EOF
 
-        - id: artifact
-        name: Collect artifacts
-        run: |
-          ./scripts/collect-artifacts.sh longhorn charts
+    #- id: artifact
+    #  name: Collect artifacts
+    #  run: |
+    #    ./scripts/collect-artifacts.sh longhorn charts
 
     - id: tag
       name: Create a tag for each release repo
