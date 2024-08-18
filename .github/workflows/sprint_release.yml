@@ -24,7 +24,7 @@ jobs:
 
     strategy:
       matrix:
-        branch_tag: ['master:v1.7.0']
+        branch_tag: ['master:master-head-20240818']
 
     steps:
     - name: Setup Git
