@@ -65,3 +65,17 @@ jobs:
         tag=${tag}
         milestone=${milestone}
         EOF
+
+        - id: artifact
+        name: Collect artifacts
+        run: |
+          ./scripts/collect-artifacts.sh longhorn charts
+
+    - id: tag
+      name: Create a tag for each release repo
+      run: |
+        renote tag \
+          --owner derekbit \
+          --branch ${{ steps.var.outputs.branch }} \
+          --tag ${{ steps.var.outputs.tag }} \
+          --repos longhorn-manager
