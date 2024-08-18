@@ -34,8 +34,8 @@ jobs:
     - uses: anchore/sbom-action/download-syft@v0.17.0
 
     - run: |
-        git config --global user.email "dko@suse.com"
-        git config --global user.name "David Ko"
+        git config --global user.email "derek.su@suse.com"
+        git config --global user.name "Derek Su"
 
     - uses: actions/checkout@v4
 
