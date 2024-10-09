@@ -93,9 +93,9 @@ image:
       tag: v1.11.2-20241007
     snapshotter:
       # -- Repository for the CSI Snapshotter image. When unspecified, Longhorn uses the default value.
-      repository: longhornio/csi-snapshotter
+      repository: registry.k8s.io/sig-storage/csi-snapshotter
       # -- Tag for the CSI Snapshotter image. When unspecified, Longhorn uses the default value.
-      tag: v7.0.2-20241007
+      tag: v7.0.1
     livenessProbe:
       # -- Repository for the CSI liveness probe image. When unspecified, Longhorn uses the default value.
       repository: longhornio/livenessprobe
