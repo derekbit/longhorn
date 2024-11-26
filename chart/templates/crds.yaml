@@ -2204,6 +2204,24 @@ spec:
                           type: string
                         listen:
                           type: string
+                        nvmeSubsystem:
+                          properties:
+                            paths:
+                              additionalProperties:
+                                properties:
+                                  srcAddr:
+                                    type: string
+                                  state:
+                                    type: string
+                                  traddr:
+                                    type: string
+                                  trsvcid:
+                                    type: string
+                                  trtype:
+                                    type: string
+                                type: object
+                              type: object
+                          type: object
                         portEnd:
                           format: int32
                           type: integer
@@ -2259,6 +2277,24 @@ spec:
                           type: string
                         listen:
                           type: string
+                        nvmeSubsystem:
+                          properties:
+                            paths:
+                              additionalProperties:
+                                properties:
+                                  srcAddr:
+                                    type: string
+                                  state:
+                                    type: string
+                                  traddr:
+                                    type: string
+                                  trsvcid:
+                                    type: string
+                                  trtype:
+                                    type: string
+                                type: object
+                              type: object
+                          type: object
                         portEnd:
                           format: int32
                           type: integer
@@ -2314,6 +2350,24 @@ spec:
                           type: string
                         listen:
                           type: string
+                        nvmeSubsystem:
+                          properties:
+                            paths:
+                              additionalProperties:
+                                properties:
+                                  srcAddr:
+                                    type: string
+                                  state:
+                                    type: string
+                                  traddr:
+                                    type: string
+                                  trsvcid:
+                                    type: string
+                                  trtype:
+                                    type: string
+                                type: object
+                              type: object
+                          type: object
                         portEnd:
                           format: int32
                           type: integer
