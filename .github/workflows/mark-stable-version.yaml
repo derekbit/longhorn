@@ -1,77 +1,72 @@
-name: Update Releases # Name of the workflow
+name: Update Releases
 
 on:
-  workflow_dispatch: # Trigger the workflow manually
+  workflow_dispatch:
     inputs:
-      stable_version: # Input parameter for stable version
-        description: 'Version to mark as stable (e.g., 1.7.2)' # Parameter description
-        required: false # Not a required parameter
-      inactive_release: # Input parameter for inactive release
-        description: 'Version to mark as inactive (e.g., 1.5)' # Parameter description
-        required: false # Not a required parameter
+      stable_version:
+        description: 'Version to mark as stable (e.g., 1.7.2)'
+        required: false
+      inactive_release:
+        description: 'Version to mark as inactive (e.g., 1.5)'
+        required: false
 
 jobs:
-  update-releases: # Job to update release information
-    runs-on: ubuntu-latest # Run on the latest Ubuntu version
+  update-releases:
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3 # Check out the code
+      - uses: actions/checkout@v3
 
-      - name: Install Packages # Install necessary packages
+      - name: Install Packages
         run: sudo apt-get update && sudo apt-get install -y jq
 
-      - name: Get Releases # Get release information from GitHub API
-        id: get_releases # Set the step ID for future reference
+      - name: Get Releases
+        id: get_releases
         run: |
-          curl -sSL https://api.github.com/repos/derekbit/longhorn/releases | jq '.[]' > releases.json # Use curl to get JSON data and jq to process it, saving to releases.json
+          curl -sSL https://api.github.com/repos/longhorn/longhorn/releases | jq '.[]' > releases.json
 
-      - name: Mark Stable Version # Step to mark a stable version
-        if: github.event.inputs.stable_version != '' # Only run if stable_version is provided
+      - name: Mark Stable Version
+        if: github.event.inputs.stable_version != ''
         run: |
-          stable_version="${{ github.event.inputs.stable_version }}" # Get the input stable version
-          echo "Input stable version: $stable_version" # Output debug message
-          major_version="${stable_version%%.*}" # Extract the major version number (e.g., 1.7.2 becomes 1.7)
-          echo "Major version: $major_version" # Output debug message
+          stable_version="${{ github.event.inputs.stable_version }}"
+          echo "Input stable version: $stable_version"
 
-          # Check if the major version exists in README.md
-          if grep -q "| \*\*${major_version}\*\*\* |" README.md; then # Use grep -q for silent check
-            echo "Found major version in README.md: ${major_version}" # Output debug message
-            # Use a more precise sed command to ensure only the target line is modified
-            if sed -i "s/| \*\*${major_version}\*\*\*  |.*| ${stable_version} |/| \*\*${major_version}\*\*\*  |.*| ${stable_version} (Stable) |/" README.md; then # Use sed to replace the string
-              echo "Successfully marked ${stable_version} as stable." # Output success message
-              grep "| \*\*${major_version}\*\*\*  |.*| ${stable_version} (Stable) |" README.md # Use grep to verify the modification and output the result
+          # Check if the FULL version exists in README.md
+          if grep -q "| ${stable_version} |" README.md; then #Match full version
+            echo "Found full version in README.md: ${stable_version}"
+            # Use sed to add "(Stable)" to the correct cell in the table
+            if sed -i "s/| ${stable_version} |/| ${stable_version} (Stable) |/" README.md; then
+              echo "Successfully marked ${stable_version} as stable."
+              grep "| ${stable_version} (Stable) |" README.md # Verify the change
             else
-              echo "Failed to mark ${stable_version} as stable! Check the sed command." # Output error message
-              exit 1 # Fail the workflow to prevent further errors
+              echo "Failed to mark ${stable_version} as stable! Check the sed command."
+              exit 1
             fi
           else
-            echo "Major version ${major_version} not found in README.md, cannot mark as stable." # Output error message
-            exit 1 # Fail the workflow
+            echo "Full version ${stable_version} not found in README.md, cannot mark as stable."
+            exit 1
           fi
 
-      - name: Mark Inactive Release # Step to mark an inactive release
-        if: github.event.inputs.inactive_release != '' # Only run if inactive_release is provided
+      - name: Mark Inactive Release
+        if: github.event.inputs.inactive_release != ''
         run: |
-          inactive_release="${{ github.event.inputs.inactive_release }}" # Get the input inactive release
-          echo "Input inactive version: $inactive_release" # Output debug message
-
-          # Check if the version number exists in README.md
-          if grep -q "| ${inactive_release} |" README.md; then # Use grep -q for silent check
-            echo "Found version number in README.md: ${inactive_release}" # Output debug message
-            # Use a more precise sed command
-            if sed -i "s/| ${inactive_release} |.*| ✅ |/| ${inactive_release} |.*|   |/" README.md; then # Use sed to replace the string
-              echo "Successfully marked ${inactive_release} as inactive." # Output success message
-              grep "| ${inactive_release} |.*|   |" README.md # Use grep to verify the modification and output the result
+          inactive_release="${{ github.event.inputs.inactive_release }}"
+          echo "Input inactive version: $inactive_release"
+          if grep -q "| ${inactive_release} |" README.md; then
+            echo "Found version number in README.md: ${inactive_release}"
+            if sed -i "s/| ${inactive_release} |.*| ✅ |/| ${inactive_release} |.*|   |/" README.md; then
+              echo "Successfully marked ${inactive_release} as inactive."
+              grep "| ${inactive_release} |.*|   |" README.md
             else
-              echo "Failed to mark ${inactive_release} as inactive! Check the sed command." # Output error message
-              exit 1 # Fail the workflow
+              echo "Failed to mark ${inactive_release} as inactive! Check the sed command."
+              exit 1
             fi
           else
-            echo "Version number ${inactive_release} not found in README.md, cannot mark as inactive." # Output error message
-            exit 1 # Fail the workflow
+            echo "Version number ${inactive_release} not found in README.md, cannot mark as inactive."
+            exit 1
           fi
 
-      - name: Commit changes # Commit the modified README.md
+      - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: "Update Releases information" # Commit message
-          branch: ${{ github.ref }} # Push to the branch that triggered the workflow
+          commit_message: "Update Releases information"
+          branch: ${{ github.ref }}
