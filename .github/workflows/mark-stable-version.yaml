@@ -22,7 +22,7 @@ jobs:
       - name: Get Releases # Get release information from GitHub API
         id: get_releases # Set the step ID for future reference
         run: |
-          curl -sSL https://api.github.com/repos/longhorn/longhorn/releases | jq '.[]' > releases.json # Use curl to get JSON data and jq to process it, saving to releases.json
+          curl -sSL https://api.github.com/repos/derekbit/longhorn/releases | jq '.[]' > releases.json # Use curl to get JSON data and jq to process it, saving to releases.json
 
       - name: Mark Stable Version # Step to mark a stable version
         if: github.event.inputs.stable_version != '' # Only run if stable_version is provided
