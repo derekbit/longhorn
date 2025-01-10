@@ -1,0 +1,45 @@
+name: Mark Stable Version
+
+on:
+  workflow_dispatch: # 手動觸發 workflow
+    inputs:
+      stable_version:
+        description: '要標記為穩定的版本 (例如: 1.7.2)'
+        required: false # 非必要參數
+      inactive_release:
+        description: '要標記為不活躍的版本 (例如: 1.5)'
+        required: false # 非必要參數
+
+jobs:
+  update-releases:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Packages
+        run: sudo apt-get update && sudo apt-get install -y jq
+
+      - name: Get Releases
+        id: get_releases
+        run: |
+          curl -sSL https://api.github.com/repos/derekbit/longhorn/releases | jq '.[]' > releases.json
+
+      - name: Mark Stable Version
+        if: github.event.inputs.stable_version != ''
+        run: |
+          stable_version="${{ github.event.inputs.stable_version }}"
+          echo "Marking $stable_version as stable"
+          sed -i "s/| \*\*${stable_version%%.*}\*\*\*  |.*| $stable_version |/| \*\*${stable_version%%.*}\*\*\*  |.*| $stable_version (Stable) |/" README.md
+
+      - name: Mark Inactive Release
+        if: github.event.inputs.inactive_release != ''
+        run: |
+          inactive_release="${{ github.event.inputs.inactive_release }}"
+          echo "Marking $inactive_release as inactive"
+          sed -i "s/| ${inactive_release} |.*| ✅ |/| ${inactive_release} |.*|   |/" README.md
+
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "Update releases information"
+          branch: ${{ github.ref }}
