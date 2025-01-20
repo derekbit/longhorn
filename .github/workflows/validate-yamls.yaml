@@ -15,14 +15,6 @@ jobs:
   validate-yamls:
     runs-on: ubuntu-latest
     steps:
-<<<<<<< Updated upstream
-    - uses: actions/checkout@v4
-
-    - uses: mikefarah/yq@master
-      with:
-        cmd: yq --help
-=======
       - uses: actions/checkout@v4
       - name: Validate YAML file
         run: yamllint chart/questions.yaml
->>>>>>> Stashed changes
