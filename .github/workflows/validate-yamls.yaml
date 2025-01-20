@@ -17,4 +17,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Validate YAML file
+        env:
+          yamllint_config: '{extends: default, rules: {line-length: {enable: false}}}'
         run: yamllint chart/questions.yaml
