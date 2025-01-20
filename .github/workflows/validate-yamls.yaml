@@ -1,0 +1,23 @@
+name: Validate Longhorn YAMLs
+
+on:
+  pull_request_target:
+    types:
+    - opened
+    - edited
+    - synchronize
+    - reopened
+
+permissions:
+  pull-requests: read
+
+jobs:
+  validate-yamls:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - uses: mikefarah/yq@master
+      with:
+        cmd: yq validate chart/questions.yaml
