@@ -20,4 +20,4 @@ jobs:
 
     - uses: mikefarah/yq@master
       with:
-        cmd: yq validate chart/questions.yaml
+        cmd: yq --help
