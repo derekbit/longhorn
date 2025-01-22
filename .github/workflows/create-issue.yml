@@ -109,10 +109,11 @@ jobs:
           [TEST]${{ github.event.issue.title }}
     - name: Create Automation Test Issue
       if: fromJSON(steps.is-longhorn-member.outputs.teams)[0] != null && fromJSON(steps.if-automation-issue-exists.outputs.issues)[0] == null
-      uses: dacbd/create-issue-action@v1
+      uses: dacbd/create-issue-action@main
       id: create-automation-test-issue
       with:
         token: ${{ github.token }}
+        owner: ${{ github.event.issue.assignees.*.login }}
         title: |
           [TEST]${{ github.event.issue.title }}
         body: |
