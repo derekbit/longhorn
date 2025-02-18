@@ -54,8 +54,8 @@ jobs:
     - name: Longhorn Sprint Issues - Move to Current Sprint
       uses: mavi0/auto-add-iteration@master
       with:
-        owner: OrgName
-        number: 1
+        owner: dereksu-org
+        number: 3
         token: ${{ secrets.CUSTOM_GITHUB_TOKEN }}
         iteration-field: Sprint
         new-iteration: current
