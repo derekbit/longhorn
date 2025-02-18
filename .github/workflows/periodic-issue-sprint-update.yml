@@ -58,7 +58,7 @@ jobs:
         number: 3
         token: ${{ secrets.CUSTOM_GITHUB_TOKEN }}
         iteration-field: Sprint
-        iteration: none
+        iteration: last
         new-iteration: current
         statuses: "Ready For Testing"
 
