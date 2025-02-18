@@ -52,12 +52,13 @@ jobs:
         statuses: "Review"
 
     - name: Longhorn Sprint Issues - Move to Current Sprint
-      uses: blombard/move-to-next-iteration@master
+      uses: derekbit/move-to-next-iteration@master
       with:
         owner: dereksu-org
         number: 3
         token: ${{ secrets.CUSTOM_GITHUB_TOKEN }}
         iteration-field: Sprint
+        iteration: none
         new-iteration: current
         statuses: "Ready For Testing"
 
