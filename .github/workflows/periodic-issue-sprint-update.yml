@@ -31,7 +31,6 @@ jobs:
 
     - name: Longhorn Sprint Issues - Clear Sprint
       uses: derekbit/move-to-next-iteration@master
-      if: steps.check_sprint_build_required.outcome == 'success'
       with:
         owner: dereksu-org
         number: 3
@@ -43,7 +42,6 @@ jobs:
 
     - name: Longhorn Sprint Issues - Move to Next Sprint
       uses: derekbit/move-to-next-iteration@master
-      if: steps.check_sprint_build_required.outcome == 'success'
       with:
         owner: dereksu-org
         number: 3
@@ -55,7 +53,6 @@ jobs:
 
     - name: Longhorn Sprint Issues - Move to Current Sprint
       uses: blombard/move-to-next-iteration@master
-      if: steps.check_sprint_build_required.outcome == 'success'
       with:
         owner: dereksu-org
         number: 3
@@ -67,7 +64,6 @@ jobs:
 
     - name: QA Sprint - Clear Sprint
       uses: derekbit/move-to-next-iteration@master
-      if: steps.check_sprint_build_required.outcome == 'success'
       with:
         owner: dereksu-org
         number: 3
@@ -79,7 +75,6 @@ jobs:
 
     - name: QA Sprint - Move to Next Sprint
       uses: derekbit/move-to-next-iteration@master
-      if: steps.check_sprint_build_required.outcome == 'success'
       with:
         owner: dereksu-org
         number: 3
@@ -91,7 +86,6 @@ jobs:
 
     - name: Longhorn Community Sprint issues - Move to Next Sprint
       uses: derekbit/move-to-next-iteration@master
-      if: steps.check_sprint_build_required.outcome == 'success'
       with:
         owner: dereksu-org
         number: 3
