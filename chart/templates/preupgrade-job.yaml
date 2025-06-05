@@ -1,4 +1,5 @@
 {{- if and .Values.preUpgradeChecker.jobEnabled .Values.preUpgradeChecker.upgradeVersionCheck}}
+{{- $registry := coalesce .Values.global.imageRegistry .Values.image.longhorn.manager.registry (include "registry_url" .) }}
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -18,7 +19,7 @@ spec:
     spec:
       containers:
       - name: longhorn-pre-upgrade
-        image: {{ with (coalesce .Values.global.imageRegistry .Values.image.longhorn.manager.registry (template "registry_url" .)) }}{{ . }}/{{ end }}{{ .Values.image.longhorn.manager.repository }}:{{ .Values.image.longhorn.manager.tag }}
+        image: {{ if $registry }}{{ $registry }}/{{ end }}{{ .Values.image.longhorn.manager.repository }}:{{ .Values.image.longhorn.manager.tag }}
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         securityContext:
           privileged: true

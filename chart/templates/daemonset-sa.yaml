@@ -1,3 +1,9 @@
+{{- $managerRegistry := coalesce .Values.global.imageRegistry .Values.image.longhorn.manager.registry (include "registry_url" .) }}
+{{- $engineRegistry := coalesce .Values.global.imageRegistry .Values.image.longhorn.engine.registry (include "registry_url" .) }}
+{{- $instanceManagerRegistry := coalesce .Values.global.imageRegistry .Values.image.longhorn.instanceManager.registry (include "registry_url" .) }}
+{{- $shareManagerRegistry := coalesce .Values.global.imageRegistry .Values.image.longhorn.shareManager.registry (include "registry_url" .) }}
+{{- $backingImageManagerRegistry := coalesce .Values.global.imageRegistry .Values.image.longhorn.backingImageManager.registry (include "registry_url" .) }}
+{{- $supportBundleKitRegistry := coalesce .Values.global.imageRegistry .Values.image.longhorn.supportBundleKit.registry (include "registry_url" .) }}
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
@@ -20,7 +26,7 @@ spec:
     spec:
       containers:
       - name: longhorn-manager
-        image: {{ with (coalesce .Values.global.imageRegistry .Values.image.longhorn.manager.registry (template "registry_url" .)) }}{{ . }}/{{ end }}{{ .Values.image.longhorn.manager.repository }}:{{ .Values.image.longhorn.manager.tag }}
+        image: {{ if $managerRegistry }}{{ $managerRegistry }}/{{ end }}{{ .Values.image.longhorn.manager.repository }}:{{ .Values.image.longhorn.manager.tag }}
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         securityContext:
           privileged: true
@@ -32,17 +38,17 @@ spec:
         {{- end }}
         - daemon
         - --engine-image
-        - "{{ with (coalesce .Values.global.imageRegistry .Values.image.longhorn.engine.registry (template "registry_url" .)) }}{{ . }}/{{ end }}{{ .Values.image.longhorn.engine.repository }}:{{ .Values.image.longhorn.engine.tag }}"
+        - "{{ if $engineRegistry }}{{ $engineRegistry }}/{{ end }}{{ .Values.image.longhorn.engine.repository }}:{{ .Values.image.longhorn.engine.tag }}"
         - --instance-manager-image
-        - "{{ with (coalesce .Values.global.imageRegistry .Values.image.longhorn.instanceManager.registry (template "registry_url" .)) }}{{ . }}/{{ end }}{{ .Values.image.longhorn.instanceManager.repository }}:{{ .Values.image.longhorn.instanceManager.tag }}"
+        - "{{ if $instanceManagerRegistry }}{{ $instanceManagerRegistry }}/{{ end }}{{ .Values.image.longhorn.instanceManager.repository }}:{{ .Values.image.longhorn.instanceManager.tag }}"
         - --share-manager-image
-        - "{{ with (coalesce .Values.global.imageRegistry .Values.image.longhorn.shareManager.registry (template "registry_url" .)) }}{{ . }}/{{ end }}{{ .Values.image.longhorn.shareManager.repository }}:{{ .Values.image.longhorn.shareManager.tag }}"
+        - "{{ if $shareManagerRegistry }}{{ $shareManagerRegistry }}/{{ end }}{{ .Values.image.longhorn.shareManager.repository }}:{{ .Values.image.longhorn.shareManager.tag }}"
         - --backing-image-manager-image
-        - "{{ with (coalesce .Values.global.imageRegistry .Values.image.longhorn.backingImageManager.registry (template "registry_url" .)) }}{{ . }}/{{ end }}{{ .Values.image.longhorn.backingImageManager.repository }}:{{ .Values.image.longhorn.backingImageManager.tag }}"
+        - "{{ if $backingImageManagerRegistry }}{{ $backingImageManagerRegistry }}/{{ end }}{{ .Values.image.longhorn.backingImageManager.repository }}:{{ .Values.image.longhorn.backingImageManager.tag }}"
         - --support-bundle-manager-image
-        - "{{ with (coalesce .Values.global.imageRegistry .Values.image.longhorn.supportBundleKit.registry (template "registry_url" .)) }}{{ . }}/{{ end }}{{ .Values.image.longhorn.supportBundleKit.repository }}:{{ .Values.image.longhorn.supportBundleKit.tag }}"
+        - "{{ if $supportBundleKitRegistry }}{{ $supportBundleKitRegistry }}/{{ end }}{{ .Values.image.longhorn.supportBundleKit.repository }}:{{ .Values.image.longhorn.supportBundleKit.tag }}"
         - --manager-image
-        - "{{ with (coalesce .Values.global.imageRegistry .Values.image.longhorn.manager.registry (template "registry_url" .)) }}{{ . }}/{{ end }}{{ .Values.image.longhorn.manager.repository }}:{{ .Values.image.longhorn.manager.tag }}"
+        - "{{ if $managerRegistry }}{{ $managerRegistry }}/{{ end }}{{ .Values.image.longhorn.manager.repository }}:{{ .Values.image.longhorn.manager.tag }}"
         - --service-account
         - longhorn-service-account
         {{- if .Values.preUpgradeChecker.upgradeVersionCheck}}
@@ -106,7 +112,7 @@ spec:
         {{- end }}
       - name: pre-pull-share-manager-image
         imagePullPolicy: {{ .Values.image.pullPolicy }}
-        image: {{ with (coalesce .Values.global.imageRegistry .Values.image.longhorn.shareManager.registry (template "registry_url" .)) }}{{ . }}/{{ end }}{{ .Values.image.longhorn.shareManager.repository }}:{{ .Values.image.longhorn.shareManager.tag }}
+        image: {{ if $shareManagerRegistry }}{{ $shareManagerRegistry }}/{{ end }}{{ .Values.image.longhorn.shareManager.repository }}:{{ .Values.image.longhorn.shareManager.tag }}
         command: ["sh", "-c", "echo share-manager image pulled && sleep infinity"]
       volumes:
       - name: boot
