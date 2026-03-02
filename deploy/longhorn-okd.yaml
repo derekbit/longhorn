@@ -2147,6 +2147,8 @@ spec:
                           type: string
                         errorMsg:
                           type: string
+                        frontend:
+                          type: string
                         listen:
                           type: string
                         portEnd:
@@ -2198,6 +2200,8 @@ spec:
                           type: string
                         errorMsg:
                           type: string
+                        frontend:
+                          type: string
                         listen:
                           type: string
                         portEnd:
@@ -2248,6 +2252,8 @@ spec:
                         endpoint:
                           type: string
                         errorMsg:
+                          type: string
+                        frontend:
                           type: string
                         listen:
                           type: string
