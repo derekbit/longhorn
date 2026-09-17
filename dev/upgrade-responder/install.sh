@@ -388,6 +388,14 @@ configMap:
         "longhornSettingRestoreConcurrentLimit": {
           "dataType": "float"
         },
+        "longhornSettingDataEngineInterruptModeEnabled": {
+          "dataType": "string",
+          "maxLen": 200
+        },
+        "longhornSettingDataEngineCPUIsolationEnabled": {
+          "dataType": "string",
+          "maxLen": 200
+        },
         "longhornSettingStorageMinimalAvailablePercentage": {
           "dataType": "float"
         },
