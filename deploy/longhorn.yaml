@@ -30,7 +30,6 @@ metadata:
     app.kubernetes.io/name: longhorn
     app.kubernetes.io/instance: longhorn
     app.kubernetes.io/version: v1.10.5
-
 ---
 # Source: longhorn/templates/serviceaccount.yaml
 apiVersion: v1
@@ -42,7 +41,6 @@ metadata:
     app.kubernetes.io/name: longhorn
     app.kubernetes.io/instance: longhorn
     app.kubernetes.io/version: v1.10.5
-
 ---
 # Source: longhorn/templates/serviceaccount.yaml
 apiVersion: v1
@@ -256,7 +254,6 @@ spec:
     storage: true
     subresources:
       status: {}
-
 ---
 # Source: longhorn/templates/crds.yaml
 apiVersion: apiextensions.k8s.io/v1
@@ -398,7 +395,6 @@ spec:
     storage: true
     subresources:
       status: {}
-
 ---
 # Source: longhorn/templates/crds.yaml
 apiVersion: apiextensions.k8s.io/v1
@@ -582,7 +578,6 @@ spec:
     storage: true
     subresources:
       status: {}
-
 ---
 # Source: longhorn/templates/crds.yaml
 apiVersion: apiextensions.k8s.io/v1
@@ -754,7 +749,6 @@ spec:
     storage: true
     subresources:
       status: {}
-
 ---
 # Source: longhorn/templates/crds.yaml
 apiVersion: apiextensions.k8s.io/v1
@@ -946,7 +940,6 @@ spec:
     storage: true
     subresources:
       status: {}
-
 ---
 # Source: longhorn/templates/crds.yaml
 apiVersion: apiextensions.k8s.io/v1
@@ -1088,7 +1081,6 @@ spec:
     storage: true
     subresources:
       status: {}
-
 ---
 # Source: longhorn/templates/crds.yaml
 apiVersion: apiextensions.k8s.io/v1
@@ -1235,7 +1227,6 @@ spec:
     storage: true
     subresources:
       status: {}
-
 ---
 # Source: longhorn/templates/crds.yaml
 apiVersion: apiextensions.k8s.io/v1
@@ -1388,7 +1379,6 @@ spec:
     storage: true
     subresources:
       status: {}
-
 ---
 # Source: longhorn/templates/crds.yaml
 apiVersion: apiextensions.k8s.io/v1
@@ -1742,7 +1732,6 @@ spec:
     storage: true
     subresources:
       status: {}
-
 ---
 # Source: longhorn/templates/crds.yaml
 apiVersion: apiextensions.k8s.io/v1
@@ -2053,7 +2042,6 @@ spec:
     storage: true
     subresources:
       status: {}
-
 ---
 # Source: longhorn/templates/crds.yaml
 apiVersion: apiextensions.k8s.io/v1
@@ -2283,7 +2271,6 @@ spec:
     storage: true
     subresources:
       status: {}
-
 ---
 # Source: longhorn/templates/crds.yaml
 apiVersion: apiextensions.k8s.io/v1
@@ -2407,7 +2394,6 @@ spec:
     storage: true
     subresources:
       status: {}
-
 ---
 # Source: longhorn/templates/crds.yaml
 apiVersion: apiextensions.k8s.io/v1
@@ -2549,7 +2535,6 @@ spec:
     storage: true
     subresources:
       status: {}
-
 ---
 # Source: longhorn/templates/crds.yaml
 apiVersion: apiextensions.k8s.io/v1
@@ -2781,7 +2766,6 @@ spec:
     storage: true
     subresources:
       status: {}
-
 ---
 # Source: longhorn/templates/crds.yaml
 apiVersion: apiextensions.k8s.io/v1
@@ -2862,7 +2846,6 @@ spec:
     storage: true
     subresources:
       status: {}
-
 ---
 # Source: longhorn/templates/crds.yaml
 apiVersion: apiextensions.k8s.io/v1
@@ -2951,7 +2934,6 @@ spec:
     storage: true
     subresources:
       status: {}
-
 ---
 # Source: longhorn/templates/crds.yaml
 apiVersion: apiextensions.k8s.io/v1
@@ -3085,7 +3067,6 @@ spec:
     storage: true
     subresources:
       status: {}
-
 ---
 # Source: longhorn/templates/crds.yaml
 apiVersion: apiextensions.k8s.io/v1
@@ -3221,7 +3202,6 @@ spec:
     storage: true
     subresources:
       status: {}
-
 ---
 # Source: longhorn/templates/crds.yaml
 apiVersion: apiextensions.k8s.io/v1
@@ -3363,7 +3343,6 @@ spec:
     storage: true
     subresources:
       status: {}
-
 ---
 # Source: longhorn/templates/crds.yaml
 apiVersion: apiextensions.k8s.io/v1
@@ -3477,7 +3456,6 @@ spec:
     storage: true
     subresources:
       status: {}
-
 ---
 # Source: longhorn/templates/crds.yaml
 apiVersion: apiextensions.k8s.io/v1
@@ -3626,7 +3604,6 @@ spec:
     storage: true
     subresources:
       status: {}
-
 ---
 # Source: longhorn/templates/crds.yaml
 apiVersion: apiextensions.k8s.io/v1
@@ -4092,7 +4069,6 @@ subjects:
 - kind: ServiceAccount
   name: longhorn-service-account
   namespace: longhorn-system
-
 ---
 # Source: longhorn/templates/clusterrolebinding.yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -4225,7 +4201,6 @@ spec:
   - name: admission-webhook
     port: 9502
     targetPort: admission-wh
-
 ---
 # Source: longhorn/templates/services.yaml
 apiVersion: v1
@@ -4373,7 +4348,6 @@ spec:
   updateStrategy:
     rollingUpdate:
       maxUnavailable: "100%"
-
 ---
 # Source: longhorn/templates/deployment-driver.yaml
 apiVersion: apps/v1
@@ -4428,7 +4402,7 @@ spec:
               fieldRef:
                 fieldPath: spec.serviceAccountName
           - name: CSI_ATTACHER_IMAGE
-            value: "docker.io/longhornio/csi-attacher:v4.13.1"
+            value: "docker.io/longhornio/csi-attacher:v4.13.1-20261126-rc1"
           - name: CSI_PROVISIONER_IMAGE
             value: "docker.io/longhornio/csi-provisioner:v5.3.0-20261123"
           - name: CSI_NODE_DRIVER_REGISTRAR_IMAGE
@@ -4436,7 +4410,7 @@ spec:
           - name: CSI_RESIZER_IMAGE
             value: "docker.io/longhornio/csi-resizer:v1.14.0-20261123"
           - name: CSI_SNAPSHOTTER_IMAGE
-            value: "docker.io/longhornio/csi-snapshotter:v8.7.1"
+            value: "docker.io/longhornio/csi-snapshotter:v8.7.1-20261126-rc1"
           - name: CSI_LIVENESS_PROBE_IMAGE
             value: "docker.io/longhornio/livenessprobe:v2.20.1"
       priorityClassName: "longhorn-critical"
@@ -4509,7 +4483,6 @@ spec:
       - emptyDir: {}
         name: var-run
       priorityClassName: "longhorn-critical"
-
 ---
 # Source: longhorn/templates/validate-psp-install.yaml
 #
